@@ -1,0 +1,9 @@
+version: '3'
+services:
+  proxy:
+    container_name: proxy
+    image: eeacms/varnish
+    volume:
+      - ./proxy/conf.vcl:/etc/varnish/conf.d/conf.vcl:ro
+    # no fork, use config file, listen on any device
+    command: varnishd -F -f etcvarnish/conf.g/conf.vcl -a 0.0.0.0:3001
